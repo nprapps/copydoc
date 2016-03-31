@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import pkg_resources
 from bs4 import BeautifulSoup, element
 from copy import copy
 
@@ -16,8 +15,6 @@ try:
 except NameError:
     # Python 3
     unicode = str
-
-__version__ = pkg_resources.get_distribution('copydoc').version
 
 ATTR_WHITELIST = {
     'a': ['href'],

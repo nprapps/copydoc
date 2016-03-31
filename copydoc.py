@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 import urlparse
+import pkg_resources
 from bs4 import BeautifulSoup, element
+
+__version__ = pkg_resources.get_distribution('copydoc').version
 
 ATTR_WHITELIST = {
     'a': ['href'],

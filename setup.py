@@ -17,7 +17,7 @@ def read(filename):
 
 setup(
     name='copydoc',
-    version='0.0.1',
+    version='1.0.0',
     author='David Eads',
     author_email='deads@npr.org',
     url='https://github.com/nprapps/copydoc/',
@@ -28,7 +28,7 @@ setup(
     keywords='google gdocs',
     install_requires=reqs,
     classifiers=(
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Topic :: Software Development :: Libraries :: Python Modules',

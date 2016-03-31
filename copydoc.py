@@ -3,6 +3,11 @@ import urlparse
 import pkg_resources
 from bs4 import BeautifulSoup, element
 
+try:
+    unicode
+except NameError:
+    unicode = str
+
 __version__ = pkg_resources.get_distribution('copydoc').version
 
 ATTR_WHITELIST = {

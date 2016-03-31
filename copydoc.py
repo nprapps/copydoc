@@ -1,15 +1,20 @@
 # -*- coding: utf-8 -*-
 import pkg_resources
 from bs4 import BeautifulSoup, element
+from copy import copy
 
 try:
-    import urlparse
+    # Python 2
+    from urlparse import parse_qs, urlsplit
 except ImportError:
-    from urllib.parse import urlparse
+    # Python 3
+    from urllib.parse import parse_qs, urlsplit
 
 try:
+    # Python 2
     unicode
 except NameError:
+    # Python 3
     unicode = str
 
 __version__ = pkg_resources.get_distribution('copydoc').version
@@ -34,7 +39,7 @@ class CopyDoc:
 
     .. code:: python
 
-        print unicode(parser)
+        print(str(parser))
 
     Access parsed, Beautifulsoup object:
 
@@ -134,7 +139,8 @@ class CopyDoc:
         Reject attributes not defined in ATTR_WHITELIST.
         """
         if tag.name in ATTR_WHITELIST.keys():
-            for attr, value in tag.attrs.items():
+            attrs = copy(tag.attrs)
+            for attr, value in attrs.items():
                 if attr in ATTR_WHITELIST[tag.name]:
                     tag.attrs[attr] = self._parse_attr(tag.name, attr, value)
                 else:
@@ -171,7 +177,7 @@ class CopyDoc:
         Extract "real" URL from Google redirected url by getting `q`
         querystring parameter.
         """
-        params = urlparse.parse_qs(urlparse.urlsplit(href).query)
+        params = parse_qs(urlsplit(href).query)
         return params.get('q')
 
     def _parse_attr(self, tagname, attr, value):

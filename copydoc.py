@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
-import urlparse
 import pkg_resources
 from bs4 import BeautifulSoup, element
+
+try:
+    import urlparse
+except ImportError:
+    from urllib.parse import urlparse
 
 try:
     unicode

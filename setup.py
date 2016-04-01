@@ -17,13 +17,13 @@ def read(filename):
 
 setup(
     name='copydoc',
-    version='1.0.0',
+    version='1.0.1',
     author='David Eads',
     author_email='deads@npr.org',
     url='https://github.com/nprapps/copydoc/',
     description='Parse Google docs for use in content management',
     long_description=read('README.rst'),
-    py_modules=('copydoc'),
+    py_modules=('copydoc',),
     license="MIT License",
     keywords='google gdocs',
     install_requires=reqs,

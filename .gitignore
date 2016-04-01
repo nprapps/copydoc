@@ -31,4 +31,8 @@ pip-log.txt
 #Translations
 *.mo
 
+# Mac
 .DS_store
+
+# Docs
+_build

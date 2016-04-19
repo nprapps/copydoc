@@ -17,7 +17,7 @@ def read(filename):
 
 setup(
     name='copydoc',
-    version='1.0.1',
+    version='1.0.2',
     author='David Eads',
     author_email='deads@npr.org',
     url='https://github.com/nprapps/copydoc/',

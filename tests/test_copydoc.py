@@ -19,6 +19,7 @@ TOKENS = (
     ('MOBILEIMAGE', 'mobile_image'),
     ('PREVIEWBACKGROUNDIMAGE', 'preview_image'),
     ('PREVIEWMOBILEIMAGE', 'preview_mobile_image'),
+    ('STORYURL', 'story_url'),
 )
 
 
@@ -34,7 +35,7 @@ class CopyDocTestCase(unittest.TestCase):
         self.contents = self.parser.soup.body.contents
 
     def test_num_lines(self):
-        self.assertEqual(len(self.contents), 17)
+        self.assertEqual(len(self.contents), 18)
 
     def test_h1(self):
         self._is_tag(self.contents[0], 'h1')
@@ -96,6 +97,11 @@ class CopyDocTestCase(unittest.TestCase):
         child_length = len(self.contents[12].find_all())
         self.assertEqual(child_length, 0)
 
+    def test_strange_has_no_extra_spaces(self):
+        clean_string = self.parser.clean_linebreaks(self.contents[12])
+        expected_string = '<p>Strange formatting</p>'
+        self.assertEqual(clean_string, expected_string)
+
     def test_tabletag(self):
         self._is_tag(self.contents[13], 'table')
 
@@ -137,6 +143,11 @@ class CopyDocTestCase(unittest.TestCase):
 
     def test_nbsp_markup(self):
         self.assertTrue('This is a paragraph with a non-breaking&nbsp;space.' in self.parser.__unicode__())
+
+    def spaces_stripped(self):
+        clean_string = self.parser.clean_linebreaks(self.contents[17])
+        expected_string = '<p>This is a paragraph with multiple spaces.</p>'
+        self.assertEqual(child_length, 0)
 
     def _is_tag(self, tag, tag_name):
         self.assertEqual(tag.name, tag_name)

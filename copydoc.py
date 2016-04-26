@@ -175,9 +175,10 @@ class CopyDoc:
         """
         Prettify and clean up tag strings.
         """
-        pretty = tag.prettify(formatter=None)
-        stripped = re.sub('\n\s*', '', pretty)
+        pretty = tag.prettify(formatter=None).strip()
+        stripped = re.sub('\n\s+', ' ', pretty)
         stripped = re.sub('\s+', ' ', stripped)
+        stripped = re.sub('\n', '', stripped)
         return stripped
 
     def _parse_href(self, href):

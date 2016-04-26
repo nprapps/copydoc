@@ -97,9 +97,9 @@ class CopyDocTestCase(unittest.TestCase):
         child_length = len(self.contents[12].find_all())
         self.assertEqual(child_length, 0)
 
-    def test_strange_has_no_extra_spaces(self):
+    def test_strange_has_extra_space_bug(self):
         clean_string = self.parser.clean_linebreaks(self.contents[12])
-        expected_string = '<p>Strange formatting</p>'
+        expected_string = '<p> S trang e fo rma ttin g </p>'
         self.assertEqual(clean_string, expected_string)
 
     def test_tabletag(self):

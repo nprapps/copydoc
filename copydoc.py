@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import re
+
 from bs4 import BeautifulSoup, element
 from copy import copy
 
@@ -169,6 +171,15 @@ class CopyDoc:
         if text.startswith('##'):
             tag.extract()
 
+    def clean_linebreaks(self, tag):
+        """
+        Prettify and clean up tag strings.
+        """
+        pretty = tag.prettify(formatter=None)
+        stripped = re.sub('\n\s*', '', pretty)
+        stripped = re.sub('\s+', ' ', stripped)
+        return stripped
+
     def _parse_href(self, href):
         """
         Extract "real" URL from Google redirected url by getting `q`
@@ -188,9 +199,9 @@ class CopyDoc:
             return value
 
     def __unicode__(self):
-        return ''.join([unicode(tag.prettify(formatter=None))
+        return ''.join([unicode(self.clean_linebreaks(tag))
                         for tag in self.soup.body.children])
 
     def __str__(self):
-        return ''.join([str(tag.prettify(formatter=None))
+        return ''.join([str(self.clean_linebreaks(tag))
                         for tag in self.soup.body.children])

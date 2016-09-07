@@ -117,7 +117,8 @@ class CopyDoc:
         """
         See if span tag has bold style and wrap with strong tag.
         """
-        if tag.get('style') == 'font-weight:bold':
+        if (tag.get('style') == 'font-weight:bold' or
+                tag.get('style') == 'font-weight:700'):
             tag.wrap(self.soup.new_tag('strong'))
 
     def create_underline(self, tag):

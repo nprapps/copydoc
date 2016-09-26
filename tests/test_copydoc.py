@@ -172,7 +172,6 @@ class CopyDocLinkItalicCase(unittest.TestCase):
         self.assertEqual(len(self.body.contents), 1)
 
     def test_em_wrapping_all_text(self):
-        print self.body.contents[0]
         self._contains_tag(self.body.contents[0], 'em', 3)
 
     def test_u_wrapping_link(self):

@@ -35,7 +35,7 @@ class CopyDocTestCase(unittest.TestCase):
         self.contents = self.parser.soup.body.contents
 
     def test_num_lines(self):
-        self.assertEqual(len(self.contents), 18)
+        self.assertEqual(len(self.contents), 19)
 
     def test_h1(self):
         self._is_tag(self.contents[0], 'h1')
@@ -112,7 +112,7 @@ class CopyDocTestCase(unittest.TestCase):
         self._contains_tag(self.contents[13], 'tr', 2)
 
     def test_anchortag_combination(self):
-        self._contains_tag(self.contents[14], 'a')
+        self._contains_tag(self.contents[15], 'a')
 
     def test_headline_extraction(self):
         self.assertEqual(self.parser.headline, 'this is a headline')
@@ -155,6 +155,35 @@ class CopyDocTestCase(unittest.TestCase):
     def _contains_tag(self, tag, tag_name, count=1):
         child_length = len(tag.findAll(tag_name))
         self.assertEqual(child_length, count)
+
+
+class CopyDocLinkItalicCase(unittest.TestCase):
+    """
+    Test bootstrapping postgres database
+    """
+    def setUp(self):
+        with open('tests/link_italic.html') as f:
+            html_string = f.read()
+
+        self.parser = CopyDoc(html_string, TOKENS)
+        self.body = self.parser.soup.body
+
+    def test_num_lines(self):
+        self.assertEqual(len(self.body.contents), 1)
+
+    def test_em_wrapping_all_text(self):
+        self._contains_tag(self.body.contents[0], 'em', 3)
+
+    def test_u_wrapping_link(self):
+        self._contains_tag(self.body.p.u, 'a', 1)
+
+    def _is_tag(self, tag, tag_name):
+        self.assertEqual(tag.name, tag_name)
+
+    def _contains_tag(self, tag, tag_name, count=1):
+        child_length = len(tag.findAll(tag_name))
+        self.assertEqual(child_length, count)
+
 
 if __name__ == '__main__':
     unittest.main()

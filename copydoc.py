@@ -110,22 +110,25 @@ class CopyDoc:
         """
         See if span tag has italic style and wrap with em tag.
         """
-        if tag.get('style') == 'font-style:italic':
+        style = tag.get('style')
+        if style and 'font-style:italic' in style:
             tag.wrap(self.soup.new_tag('em'))
 
     def create_strong(self, tag):
         """
         See if span tag has bold style and wrap with strong tag.
         """
-        if (tag.get('style') == 'font-weight:bold' or
-                tag.get('style') == 'font-weight:700'):
+        style = tag.get('style')
+        if (style and
+                ('font-weight:bold' in style or 'font-weight:700' in style)):
             tag.wrap(self.soup.new_tag('strong'))
 
     def create_underline(self, tag):
         """
         See if span tag has underline style and wrap with u tag.
         """
-        if tag.get('style') == 'text-decoration:underline':
+        style = tag.get('style')
+        if style and 'text-decoration:underline' in style:
             tag.wrap(self.soup.new_tag('u'))
 
     def unwrap_span(self, tag):

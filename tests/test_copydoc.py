@@ -202,12 +202,6 @@ class CopyDocSpaces(unittest.TestCase):
     def test_iframe_markup(self):
         self.assertTrue('<iframe width="560" height="315" src="https://www.youtube.com/embed/dZTKOBElkyg" frameborder="0" allowfullscreen></iframe>' in self.parser.__unicode__())
 
-    def test_nbsp_markup2(self):
-        self.assertTrue('This is a paragraph with a non-breaking&nbsp;space.' in self.parser.__unicode__())
-
-    def test_nbsp_markup(self):
-        self.assertTrue(u'\xa0perro' in self.parser.__unicode__())
-
 
 if __name__ == '__main__':
     unittest.main()

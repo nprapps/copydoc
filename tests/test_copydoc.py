@@ -99,7 +99,7 @@ class CopyDocTestCase(unittest.TestCase):
 
     def test_strange_has_extra_space_bug(self):
         clean_string = self.parser.clean_linebreaks(self.contents[12])
-        expected_string = '<p> S trang e fo rma ttin g </p>'
+        expected_string = '<p>Strange formatting</p>'
         self.assertEqual(clean_string, expected_string)
 
     def test_tabletag(self):
@@ -183,6 +183,24 @@ class CopyDocLinkItalicCase(unittest.TestCase):
     def _contains_tag(self, tag, tag_name, count=1):
         child_length = len(tag.findAll(tag_name))
         self.assertEqual(child_length, count)
+
+
+class CopyDocSpaces(unittest.TestCase):
+    """
+    Test bootstrapping postgres database
+    """
+    def setUp(self):
+        with open('tests/transcript_with_embed.html') as f:
+            html_string = f.read()
+
+        self.parser = CopyDoc(html_string, TOKENS)
+        self.body = self.parser.soup.body
+
+    def test_num_lines(self):
+        self.assertEqual(len(self.body.contents), 4)
+
+    def test_iframe_markup(self):
+        self.assertTrue('<iframe width="560" height="315" src="https://www.youtube.com/embed/dZTKOBElkyg" frameborder="0" allowfullscreen></iframe>' in self.parser.__unicode__())
 
 
 if __name__ == '__main__':

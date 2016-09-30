@@ -177,10 +177,10 @@ class CopyDoc:
 
     def clean_linebreaks(self, tag):
         """
-        Prettify and clean up tag strings.
+        get unicode string without any other content transformation.
+        and clean extra spaces
         """
-        pretty = tag.prettify(formatter=None).strip()
-        stripped = re.sub('\n\s+', ' ', pretty)
+        stripped = tag.decode(formatter=None)
         stripped = re.sub('\s+', ' ', stripped)
         stripped = re.sub('\n', '', stripped)
         return stripped
@@ -209,4 +209,4 @@ class CopyDoc:
 
     def __str__(self):
         return ''.join([str(self.clean_linebreaks(tag))
-                        for tag in self.soup.body.children])
+                       for tag in self.soup.body.children])

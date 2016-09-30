@@ -208,4 +208,5 @@ class CopyDoc:
                         for tag in self.soup.body.children])
 
     def __str__(self):
-        return ''.join([str(self.clean_linebreaks(tag)) for tag in self.soup.body.children])
+        return ''.join([str(self.clean_linebreaks(tag))
+                       for tag in self.soup.body.children])

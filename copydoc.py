@@ -2,7 +2,6 @@
 import re
 
 from bs4 import BeautifulSoup, element
-from bs4.dammit import EntitySubstitution
 from copy import copy
 
 try:

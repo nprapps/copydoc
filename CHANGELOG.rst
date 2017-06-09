@@ -1,3 +1,8 @@
+1.0.7 - June 9th, 2017
+----------------------
+
+Transfer ownership to NPR Viz Team account
+
 1.0.6 - June 8th, 2017
 ----------------------
 

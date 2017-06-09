@@ -196,9 +196,6 @@ class EmptyDocCase(unittest.TestCase):
         self.parser = CopyDoc(html_string, TOKENS)
         self.body = self.parser.soup.body
 
-    def test_empty_unicode(self):
-        self.assertEqual(unicode(self.parser), '')
-
     def test_empty_string(self):
         self.assertEqual(str(self.parser), '')
 

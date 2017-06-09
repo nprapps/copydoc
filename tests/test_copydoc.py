@@ -185,6 +185,24 @@ class CopyDocLinkItalicCase(unittest.TestCase):
         self.assertEqual(child_length, count)
 
 
+class EmptyDocCase(unittest.TestCase):
+    """
+    Test bootstrapping postgres database
+    """
+    def setUp(self):
+        with open('tests/empty.html') as f:
+            html_string = f.read()
+
+        self.parser = CopyDoc(html_string, TOKENS)
+        self.body = self.parser.soup.body
+
+    def test_empty_unicode(self):
+        self.assertEqual(unicode(self.parser), '')
+
+    def test_empty_string(self):
+        self.assertEqual(str(self.parser), '')
+
+
 class CopyDocSpaces(unittest.TestCase):
     """
     Test bootstrapping postgres database

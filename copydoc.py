@@ -69,14 +69,15 @@ class CopyDoc:
             self.remove_comments(tag)
             self.check_next(tag)
 
-        for tag in self.soup.body.findAll():
-            self.remove_empty(tag)
-            self.remove_inline_comment(tag)
-            self.parse_attrs(tag)
-            for token, target in self.tokens:
-                self.find_token(tag, token, target)
+        if self.soup.body:
+            for tag in self.soup.body.findAll():
+                self.remove_empty(tag)
+                self.remove_inline_comment(tag)
+                self.parse_attrs(tag)
+                for token, target in self.tokens:
+                    self.find_token(tag, token, target)
 
-            self.remove_blacklisted_tags(tag)
+                self.remove_blacklisted_tags(tag)
 
     def remove_comments(self, tag):
         """
@@ -204,9 +205,15 @@ class CopyDoc:
             return value
 
     def __unicode__(self):
-        return ''.join([unicode(self.clean_linebreaks(tag))
-                        for tag in self.soup.body.children])
+        if not self.soup.body:
+            return ''
+        else:
+            return ''.join([unicode(self.clean_linebreaks(tag))
+                            for tag in self.soup.body.children])
 
     def __str__(self):
-        return ''.join([str(self.clean_linebreaks(tag))
-                       for tag in self.soup.body.children])
+        if not self.soup.body:
+            return ''
+        else:
+            return ''.join([str(self.clean_linebreaks(tag))
+                            for tag in self.soup.body.children])

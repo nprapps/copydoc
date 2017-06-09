@@ -18,8 +18,8 @@ def read(filename):
 setup(
     name='copydoc',
     version='1.0.6',
-    author='David Eads',
-    author_email='deads@npr.org',
+    author='NPR Visuals',
+    author_email='nprapps@npr.org',
     url='https://github.com/nprapps/copydoc/',
     description='Parse Google docs for use in content management',
     long_description=read('README.rst'),

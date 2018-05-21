@@ -1,14 +1,9 @@
 import os.path
-from pip.download import PipSession
-from pip.req import parse_requirements
 
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
-
-install_reqs = parse_requirements('requirements.txt', session=PipSession())
-reqs = [str(ir.req) for ir in install_reqs]
 
 
 def read(filename):
@@ -26,7 +21,9 @@ setup(
     py_modules=('copydoc',),
     license="MIT License",
     keywords='google gdocs',
-    install_requires=reqs,
+    install_requires=[
+        'beautifulsoup4==4.4.1'
+    ],
     classifiers=(
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',

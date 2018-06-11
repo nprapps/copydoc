@@ -1,3 +1,8 @@
+1.0.9 - June 11th, 2018
+----------------------
+
+Update setup.py to fix Pip 10 support
+
 1.0.8 - June 9th, 2017
 ----------------------
 

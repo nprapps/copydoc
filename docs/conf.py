@@ -21,9 +21,9 @@ master_doc = 'index'
 
 # Metadata
 project = u'Copydoc'
-copyright = u'2016, NPR'
-version = '1.0.6'
-release = '1.0.6'
+copyright = u'2018, NPR'
+version = '1.0.9'
+release = '1.0.9'
 
 exclude_patterns = ['_build']
 pygments_style = 'sphinx'

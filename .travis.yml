@@ -2,14 +2,14 @@ language: python
 python:
   - "2.7"
   - "3.5"
+  - "3.6"
 # command to install dependencies
 install:
   - travis_retry pip install .
   - travis_retry pip install -r requirements.txt
-  - travis_retry pip install nose2 pep8 pyflakes
+  - travis_retry pip install nose2 flake8
 # command to run tests
 script:
-  - pyflakes copydoc.py
-  - pep8 copydoc.py
+  - flake8 copydoc.py
   - python -m nose2.__main__ -v
 sudo: false

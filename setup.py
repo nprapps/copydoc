@@ -26,7 +26,7 @@ setup(
     ],
     extras_require={
         'dev': [
-            'Sphinx==1.3.1',
+            'Sphinx==1.5.6',
             'nose2==0.5.0',
             'tox==2.3.1',
             'flake8==3.5.0'
